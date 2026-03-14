@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hercules.ViewModels;
 
 namespace Hercules.Views
 {
@@ -19,7 +20,16 @@ namespace Hercules.Views
     {
         public NodeControl()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+
+            this.SizeChanged += (s, e) =>
+            {
+                if (this.DataContext is NodeControlViewModel vm)
+                {
+                    vm.width = e.NewSize.Width;
+                    vm.height = e.NewSize.Height;
+                }
+            };
         }
     }
 }

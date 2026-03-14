@@ -25,14 +25,33 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Line X1="{Binding sourceStartPosX}" 
-                              Y1="{Binding sourceStartPosY}" 
-                              X2="{Binding targetStartPosX}" 
-                              Y2="{Binding targetStartPosY}"
-                              Stroke="#0078D4" 
-                              StrokeThickness="1"/>
+                        <Canvas>
+
+                            <Line X1="{Binding sourceStartPosX}" 
+                                  Y1="{Binding sourceStartPosY}" 
+                                  X2="{Binding targetStartPosX}" 
+                                  Y2="{Binding targetStartPosY}"
+                                  Stroke="#0078D4" 
+                                  StrokeThickness="1"/>
+
+                            <Polygon Points="-10,-5 0,0 -10,5" 
+                                     Fill="#0078D4" 
+                                     Stroke="#0078D4" 
+                                     StrokeThickness="1">
+                                <Polygon.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="{Binding arrowAngle}" />
+                                        <TranslateTransform X="{Binding targetStartPosX}" Y="{Binding targetStartPosY}" />
+                                    </TransformGroup>
+                                </Polygon.RenderTransform>
+                            </Polygon>
+
+                        </Canvas>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
+
+
+
             </ItemsControl>
 
             <ItemsControl ItemsSource="{Binding MainWindow_nodes}">

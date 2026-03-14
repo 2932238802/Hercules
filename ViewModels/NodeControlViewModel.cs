@@ -4,11 +4,14 @@ using Hercules.Interface;
 
 namespace Hercules.ViewModels
 {
-    public class NodeControlViewModel : INotifyPropertyChanged,IPositionAble {
+    public class NodeControlViewModel : INotifyPropertyChanged, IPositionAble
+    {
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private double _x;
         private double _y;
+        private double _width;
+        private double _height;
         private string? _title;
 
 
@@ -20,10 +23,12 @@ namespace Hercules.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public double x {
+        public double x
+        {
             get => _x;
-            set {
-                if(_x != value)
+            set
+            {
+                if (_x != value)
                 {
                     _x = value;
                     OnPropertyChanged();
@@ -53,6 +58,32 @@ namespace Hercules.ViewModels
                 if (_title != value)
                 {
                     _title = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public double width
+        {
+            get => _width;
+            set
+            {
+                if (_width != value)
+                {
+                    _width = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public double height
+        {
+            get => _height;
+            set
+            {
+                if (value != _height)
+                {
+                    _height = value;
                     OnPropertyChanged();
                 }
             }
